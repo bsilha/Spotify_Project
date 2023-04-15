@@ -1,3 +1,5 @@
+##Author: Bridget Silha
+
 import spotipy
 import time
 from spotipy.oauth2 import SpotifyOAuth
