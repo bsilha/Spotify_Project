@@ -66,12 +66,14 @@ def save_discover_weekly():
 
     if not discover_weekly_playlist_id:
         return 'Discover Weekly playlist not found'
+    
+    user_id=sp.current_user()['id']
 
-    # # create saved weekly playlist id if it does not exist
-    # if not saved_weekly_playlist_id:
-    #     new_playlist = sp.user_playlist_create(
-    #         'bridgetbug23', 'Saved Weekly', True)
-    #     saved_weekly_playlist_id = new_playlist['id']
+    # create saved weekly playlist id if it does not exist
+    if not saved_weekly_playlist_id:
+        new_playlist = sp.user_playlist_create(
+            user_id, 'Saved Weekly', True)
+        saved_weekly_playlist_id = new_playlist['id']
 
     # get the tracks from the Discover Weekly playlist
     discover_weekly_playlist = sp.playlist_items(discover_weekly_playlist_id)
@@ -81,7 +83,7 @@ def save_discover_weekly():
         song_uris.append(song_uri)
 
     # add the tracks to the Saved Weekly playlist
-    sp.user_playlist_add_tracks("bridgetbug23", saved_weekly_playlist_id, song_uris, None)
+    sp.user_playlist_add_tracks(user_id, saved_weekly_playlist_id, song_uris, None)
 
     # return a success message
     return ('Discover Weekly songs added successfully')
