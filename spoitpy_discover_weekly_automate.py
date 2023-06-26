@@ -14,7 +14,7 @@ app.config['SESSION_COOKIE_NAME'] = 'Spotify Cookie'
 app.secret_key = 'YOUR_SECRET_KEY'  # secure digital signature for session
 
 # set the key for the token info in the session dictionary
-TOKEN_INFO = "token info"
+TOKEN_INFO = 'token info'
 
 # Route 1: Home route
 @app.route('/')
@@ -64,6 +64,7 @@ def save_discover_weekly():
         if(playlist['name'] == 'Saved Weekly'):
             saved_weekly_playlist_id = playlist['id']
 
+    # if the Discover Weekly playlist is not found, return an error message
     if not discover_weekly_playlist_id:
         return 'Discover Weekly playlist not found'
     
@@ -107,10 +108,10 @@ def get_token():
 
 def create_spotify_oauth():
     return SpotifyOAuth(
-        client_id='968b023ce86f4e9b871853ab40cbbdca',
-        client_secret='9b2bbedb93534859919577076b12a1bd',
-        redirect_uri=url_for('redirect_page', _external=True),
-        scope='user-library-read playlist-modify-public playlist-modify-private'
+        client_id = '968b023ce86f4e9b871853ab40cbbdca',
+        client_secret = '9b2bbedb93534859919577076b12a1bd',
+        redirect_uri = url_for('redirect_page', _external=True),
+        scope = 'user-library-read playlist-modify-public playlist-modify-private'
     )
 
 app.run(debug=True)
